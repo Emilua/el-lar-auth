@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <!-- Текущие задачи -->
+             <a href="{{ url(route('tasks.create')) }}">Add new task</a>
             @if (count($tasks) > 0)
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -12,7 +12,7 @@
                 </div>
 
                 <div class="panel-body">
-                    <a href="{{url(route('tasks.create'))}}">add new task</a>
+                   
                     <table class="table table-striped task-table">
 
                         <!-- Заголовок таблицы -->
@@ -31,14 +31,18 @@
                                 </td>
 
                                 <td>
-                                    <form action="{{ url(route('tasks.destroy',['task'=>$task->id])) }}" method="POST">
-      {{ csrf_field() }}
-      {{ method_field('DELETE') }}
+                                    
+  <form action="{{ url(route('tasks.destroy', ['task'=>$task->id])) }}" method="POST">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
 
-      <button type="submit" id="delete-task-{{ $task->id }}" class="btn btn-danger">
-        <i class="fa fa-btn fa-trash"></i>Удалить
-      </button>
-    </form>
+                                        <button type="submit" id="delete-task-{{ $task->id }}" class="btn btn-danger">
+                                            <i class="fa fa-btn fa-trash"></i>Удалить
+                                        </button>
+                                    </form>
+                                    <td>
+                            <a href="{{url(route('tasks.edit', ['tasks'=>$task->id]))}}" class="fa fa-edit"></a>
+                    </td>
                                 </td>
                             </tr>
                             @endforeach

@@ -18,4 +18,13 @@ Route::get('/', function () {
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
-Route::resource('tasks', 'TaskController');
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/tasks', 'TaskController@index')->name('tasks.index');
+Route::get('/tasks/create', 'TaskController@create')->name('tasks.create');
+
+Route::get('/tasks/{task}/edit', 'TaskController@edit')->name('tasks.edit');
+
+Route::post('/tasks', 'TaskController@store')->name('tasks.store');
+Route::delete('/task/{task}', 'TaskController@destroy')->name('tasks.destroy');
+//Route::resource('tasks', 'TaskController');
